@@ -1,0 +1,26 @@
+services:
+  qdrant:
+    image: qdrant/qdrant
+    container_name: qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  bg3chat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bg3chat
+    depends_on:
+      - qdrant
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - OpenAI_APIKey=${OPENAI_API_KEY}
+    stdin_open: true
+    tty: true
+
+volumes:
+  qdrant_data:

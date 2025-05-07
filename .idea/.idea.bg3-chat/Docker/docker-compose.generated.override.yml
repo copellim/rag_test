@@ -1,0 +1,39 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  bg3chat:
+    build:
+      context: "C:\\Repos\\_playground\\RAG\\bg3-chat"
+      dockerfile: "Dockerfile"
+      target: "base"
+      args:
+        BUILD_CONFIGURATION: "Debug"
+    command: []
+    entrypoint:
+    - "/opt/JetBrains/RiderDebuggerTools/linux-x64/JetBrains.Debugger.Worker"
+    - "--runtimeconfig"
+    - "/opt/JetBrains/RiderDebuggerTools/JetBrains.Debugger.Worker.runtimeconfig.json"
+    - "--mode=server"
+    - "--frontend-port=57000"
+    - "--backend-port=57200"
+    - "--roslyn-worker-port=57410"
+    - "--timeout=60"
+    environment:
+      DOTNET_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+      RIDER_DEBUGGER_LOG_DIR: "/var/opt/JetBrains/RiderDebuggerTools"
+      RESHARPER_LOG_CONF: "/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
+    image: "bg3-chat:dev"
+    ports:
+    - "127.0.0.1:57010:57000"
+    - "127.0.0.1:57210:57200"
+    - "127.0.0.1:57410:57410"
+    volumes:
+    - "C:\\Repos\\_playground\\RAG\\bg3-chat:/app-1:rw"
+    - "C:\\Repos\\_playground\\RAG\\bg3-chat:/src:rw"
+    - "C:\\Users\\copel\\.nuget\\packages:/home/app/.nuget/packages"
+    - "C:\\Users\\copel\\AppData\\Local\\JetBrains\\RiderRemoteDebugger\\2025.1.1\\\
+      Linux64:/opt/JetBrains/RiderDebuggerTools"
+    - "C:\\Program Files\\JetBrains\\JetBrains Rider 2024.3\\bin\\backend-log.xml:/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
+    - "C:\\Users\\copel\\AppData\\Local\\JetBrains\\Rider2025.1\\log\\DebuggerWorker\\\
+      JetBrains.Debugger.Worker.2025_5_07_06_49_42:/var/opt/JetBrains/RiderDebuggerTools:rw"
+    working_dir: "/app-1"

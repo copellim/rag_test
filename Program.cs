@@ -11,14 +11,14 @@ using Microsoft.SemanticKernel.Memory;
 
 #pragma warning disable SKEXP0001, SKEXP0010, SKEXP0050
 
-var apikey = Environment.GetEnvironmentVariable("AI:OpenAI:APIKey")!;
+var apikey = Environment.GetEnvironmentVariable("OpenAI_APIKey")!;
 const string modelName = "gpt-4.1-nano";
 const string embeddingModelName = "text-embedding-3-small";
 const string collectionName = "items";
 const string filePath = "BG3 Item Index Cheat Sheet.xlsx";
-const float minRelevance = 0.5f;
+const float minRelevance = 0.4f;
 
-const string qdrantUrl = "http://localhost:6333/";
+const string qdrantUrl = "http://qdrant:6333/";
 const int qdrantVectorSize = 1536;
 
 var kernel = InitKernel();
@@ -26,7 +26,7 @@ var kernel = InitKernel();
 var logger = kernel.Services.GetRequiredService<ILoggerFactory>()
     .CreateLogger("Baldur's Gate 3 Item Search");
 
-var memory = await FeedMemory(filePath);
+var memory = await InitSemanticMemory();
 
 var chatClient = kernel.GetRequiredService<IChatCompletionService>();
 var chatHistory = new ChatHistory("You are an AI assistant that helps people find information " +
@@ -75,12 +75,12 @@ Kernel InitKernel()
 {
     var kb = Kernel.CreateBuilder();
     kb.AddOpenAIChatCompletion(modelName, apikey);
-    kb.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Warning));
+    kb.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Information));
     kb.Services.ConfigureHttpClientDefaults(c => c.AddStandardResilienceHandler());
     return kb.Build();
 }
 
-async Task<ISemanticTextMemory> FeedMemory(string filePath)
+async Task<ISemanticTextMemory> InitSemanticMemory()
 {
     var semanticTextMemory = new MemoryBuilder()
         .WithLoggerFactory(kernel.LoggerFactory)

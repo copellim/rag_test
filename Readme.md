@@ -4,7 +4,11 @@ This is a test project intended to experiment with Retrieval-Augmented Generatio
 
 A .NET console app that answers questions about Baldur's Gate 3 items, based on Retrieval-Augmented Generation (RAG) using OpenAI embeddings and Qdrant as a semantic vector store.
 
-Excel file used as data source comes from a [post on the Baldur's Gate 3 subreddit](https://www.reddit.com/r/BaldursGate3/comments/16acy9l/bg3_cheat_sheet_for_items_in_each_act_spoilers/).
+The project is designed to be run in a Docker container, but it can also be run locally if you have the .NET SDK installed.
+
+To write this project, I used the following resources:
+- [Demystifying Retrieval Augmented Generation with .NET](https://devblogs.microsoft.com/dotnet/demystifying-retrieval-augmented-generation-with-dotnet/)
+- Excel file used as data source comes from a [post on the Baldur's Gate 3 subreddit](https://www.reddit.com/r/BaldursGate3/comments/16acy9l/bg3_cheat_sheet_for_items_in_each_act_spoilers/).
 
 ---
 

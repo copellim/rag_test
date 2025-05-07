@@ -25,7 +25,7 @@ To write this project, I used the following resources:
 Create a `.env` file in the project root with the following content:
 
 ```
-AI__OPENAI__APIKEY=sk-xxxxx
+OPENAI_API_KEY=sk-xxxxx
 ```
 
 ---

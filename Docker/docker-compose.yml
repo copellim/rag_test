@@ -9,8 +9,8 @@ services:
 
   bg3chat:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: Docker/Dockerfile
     container_name: bg3chat
     depends_on:
       - qdrant

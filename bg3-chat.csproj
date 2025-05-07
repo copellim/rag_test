@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BG3 Item Index Cheat Sheet.xlsx">
+    <None Update="Data\BG3 Item Index Cheat Sheet.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

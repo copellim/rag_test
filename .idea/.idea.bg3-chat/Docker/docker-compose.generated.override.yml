@@ -2,7 +2,7 @@
 services:
   bg3chat:
     build:
-      context: "C:\\Repos\\_playground\\RAG\\bg3-chat"
+      context: "C:\\Repos\\_playground\\RAG\\bg3-chat\\Docker"
       dockerfile: "Dockerfile"
       target: "base"
       args:
@@ -15,7 +15,7 @@ services:
     - "--mode=server"
     - "--frontend-port=57000"
     - "--backend-port=57200"
-    - "--roslyn-worker-port=57411"
+    - "--roslyn-worker-port=57419"
     - "--timeout=60"
     environment:
       DOTNET_ENVIRONMENT: "Development"
@@ -24,9 +24,9 @@ services:
       RESHARPER_LOG_CONF: "/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
     image: "bg3-chat:dev"
     ports:
-    - "127.0.0.1:57011:57000"
-    - "127.0.0.1:57211:57200"
-    - "127.0.0.1:57411:57411"
+    - "127.0.0.1:57019:57000"
+    - "127.0.0.1:57219:57200"
+    - "127.0.0.1:57419:57419"
     volumes:
     - "C:\\Repos\\_playground\\RAG\\bg3-chat:/app-1:rw"
     - "C:\\Repos\\_playground\\RAG\\bg3-chat:/src:rw"
@@ -35,5 +35,5 @@ services:
       Linux64:/opt/JetBrains/RiderDebuggerTools"
     - "C:\\Program Files\\JetBrains\\JetBrains Rider 2024.3\\bin\\backend-log.xml:/etc/opt/JetBrains/RiderDebuggerTools/backend-log.xml"
     - "C:\\Users\\copel\\AppData\\Local\\JetBrains\\Rider2025.1\\log\\DebuggerWorker\\\
-      JetBrains.Debugger.Worker.2025_5_07_06_59_26:/var/opt/JetBrains/RiderDebuggerTools:rw"
+      JetBrains.Debugger.Worker.2025_5_07_07_20_46:/var/opt/JetBrains/RiderDebuggerTools:rw"
     working_dir: "/app-1"

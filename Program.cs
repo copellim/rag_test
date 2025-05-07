@@ -15,7 +15,7 @@ var apikey = Environment.GetEnvironmentVariable("OpenAI_APIKey")!;
 const string modelName = "gpt-4.1-nano";
 const string embeddingModelName = "text-embedding-3-small";
 const string collectionName = "items";
-const string filePath = "BG3 Item Index Cheat Sheet.xlsx";
+const string filePath = "Data/BG3 Item Index Cheat Sheet.xlsx";
 const float minRelevance = 0.4f;
 
 const string qdrantUrl = "http://qdrant:6333/";
@@ -75,7 +75,7 @@ Kernel InitKernel()
 {
     var kb = Kernel.CreateBuilder();
     kb.AddOpenAIChatCompletion(modelName, apikey);
-    kb.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Information));
+    kb.Services.AddLogging(c => c.AddConsole().SetMinimumLevel(LogLevel.Warning));
     kb.Services.ConfigureHttpClientDefaults(c => c.AddStandardResilienceHandler());
     return kb.Build();
 }
